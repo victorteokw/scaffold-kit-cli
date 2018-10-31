@@ -1,0 +1,43 @@
+{
+  "name": "scaffold-kit-cli",
+  "version": "0.0.1",
+  "description": "Create scaffold kit scaffold tools.",
+  "homepage": "https://github.com/zhangkaiyulw/scaffold-kit-cli",
+  "author": {
+    "name": "Zhang Kaiyu",
+    "email": "yeannylam@gmail.com"
+  },
+  "repository": "zhangkaiyulw/scaffold-kit-cli",
+  "license": "MIT",
+  "bin": {
+    "scaffold-kit": "lib/scaffoldKit.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "scaffold"
+  ],
+  "scripts": {
+    "test": "jest --silent",
+    "test-cov": "jest --silent --coverage",
+    "lint": "eslint ./lib",
+    "lint-fix": "eslint ./lib --fix"
+  },
+  "dependencies": {
+    "camelcase": "^5.0.0",
+    "humanize-string": "^1.0.2",
+    "lodash.kebabcase": "^4.1.1",
+    "lower-case": "^1.1.4",
+    "scaffold-kit": "0.0.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-man": "^1.0.3",
+    "eslint-plugin-jest": "^21.17.0",
+    "jest": "^23.3.0"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  }
+}
