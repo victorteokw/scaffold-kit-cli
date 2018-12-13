@@ -1,0 +1,30 @@
+{
+  "name": "<%- name %>",
+<% if (private) { -%>
+  "private": true,
+<% } -%>
+  "version": "<%- ver %>",
+  "description": "<%- todoMessage('description') %>",
+  "homepage": "<%- todoMessage('homepage') %>",
+  "author": {
+    "name": "Zhang Kaiyu",
+    "email": "yeannylam@gmail.com"
+  },
+  "repository": "<%- todoMessage('repository') %>",
+<% if (!private) { -%>
+  "license": "<%- license %>",
+<% } -%>
+  "bin": {
+    "<%- name %>": "lib/<%- camelCase(name) %>.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

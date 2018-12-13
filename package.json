@@ -26,8 +26,10 @@
   },
   "dependencies": {
     "camelcase": "^5.0.0",
+    "glob": "^7.1.3",
     "humanize-string": "^1.0.2",
     "lodash.kebabcase": "^4.1.1",
+    "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
     "scaffold-kit": "0.1.2"
   },
