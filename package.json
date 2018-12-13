@@ -29,7 +29,7 @@
     "humanize-string": "^1.0.2",
     "lodash.kebabcase": "^4.1.1",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "0.0.9"
+    "scaffold-kit": "0.1.2"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
