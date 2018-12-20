@@ -33,7 +33,7 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "0.1.6"
+    "scaffold-kit": "0.1.7"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
