@@ -15,7 +15,7 @@
   "license": "<%- license %>",
 <% } -%>
   "bin": {
-    "<%- name %>": "lib/<%- camelCase(name) %>.js"
+    "<%- name %>": "lib/<%- mainFileName %>.js"
   },
   "files": [
     "lib"
