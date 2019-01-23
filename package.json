@@ -19,8 +19,8 @@
     "scaffold"
   ],
   "scripts": {
-    "test": "jest --silent",
-    "test-cov": "jest --silent --coverage",
+    "test": "jest",
+    "test-cov": "jest --coverage",
     "lint": "eslint ./lib",
     "lint-fix": "eslint ./lib --fix"
   },
@@ -40,7 +40,8 @@
     "eslint": "^5.0.1",
     "eslint-config-man": "^1.0.4",
     "eslint-plugin-jest": "^21.17.0",
-    "jest": "^23.3.0"
+    "jest": "^23.3.0",
+    "scaffold-kit-quality-testing": "^0.1.0"
   },
   "engines": {
     "node": ">= 8.0.0"

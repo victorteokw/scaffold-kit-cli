@@ -7,8 +7,8 @@
   "description": "<%- todoMessage('description') %>",
   "homepage": "<%- todoMessage('homepage') %>",
   "author": {
-    "name": "Zhang Kaiyu",
-    "email": "yeannylam@gmail.com"
+    "name": "<%- author.name %>",
+    "email": "<%- author.email %>"
   },
   "repository": "<%- todoMessage('repository') %>",
 <% if (!private) { -%>
