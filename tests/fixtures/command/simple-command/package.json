@@ -1,0 +1,31 @@
+{
+  "name": "brand-new-app",
+  "version": "1.0.0",
+  "description": "TODO: Please update description here.",
+  "homepage": "TODO: Please update homepage here.",
+  "author": {
+    "name": "Git Config user.name",
+    "email": "Git Config user.email"
+  },
+  "repository": "TODO: Please update repository here.",
+  "license": "TODO: Please update license here.",
+  "bin": {
+    "brand-new-app": "lib/brandNewApp.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "scaffold-kit": "latest"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-man": "latest",
+    "eslint-plugin-jest": "latest",
+    "jest": "latest",
+    "scaffold-kit-quality-testing": "latest"
+  }
+}

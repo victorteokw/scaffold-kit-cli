@@ -3,7 +3,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/tests/expected/',
-    '/tests/mocks'
+    '/tests/fixtures'
   ],
   'testEnvironment': 'node'
 };
