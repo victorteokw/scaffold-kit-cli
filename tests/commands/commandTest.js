@@ -90,4 +90,18 @@ describe('command command: ', () => {
     });
   });
 
+  describe('copies from template', () => {
+    beforeAll(runTest({
+      group: 'command',
+      template: 'command-from-template',
+      fixture: 'command-from-template',
+      command: 'command from-template --copy-templates ./templates'
+    }));
+    iterateFiles('command', 'command-from-template', ({ filename, expected, generated }) => {
+      it(`creates file '${filename}'`, () => {
+        expect(generated(filename)).toBe(expected(filename));
+      });
+    });
+  });
+
 });
