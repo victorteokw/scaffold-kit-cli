@@ -62,4 +62,18 @@ describe('command command: ', () => {
     });
   });
 
+  describe('update app file when destroying the only left command', () => {
+    beforeAll(runTest({
+      group: 'command',
+      template: 'remove-only-command',
+      fixture: 'remove-only-command',
+      command: 'destroy command simple-command'
+    }));
+    iterateFiles('command', 'remove-only-command', ({ filename, expected, generated }) => {
+      it(`creates file '${filename}'`, () => {
+        expect(generated(filename)).toBe(expected(filename));
+      });
+    });
+  });
+
 });
