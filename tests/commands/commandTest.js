@@ -19,6 +19,7 @@ beforeAll(
 afterAll(cleanUpTest('command'));
 
 describe('command command: ', () => {
+
   describe('creates an command inside given project', () => {
     beforeAll(runTest({
       group: 'command',
@@ -32,4 +33,19 @@ describe('command command: ', () => {
       });
     });
   });
+
+  describe('update app file when creating a new command', () => {
+    beforeAll(runTest({
+      group: 'command',
+      template: 'add-command',
+      fixture: 'add-command',
+      command: 'command new-command'
+    }));
+    iterateFiles('command', 'add-command', ({ filename, expected, generated }) => {
+      it(`creates file '${filename}'`, () => {
+        expect(generated(filename)).toBe(expected(filename));
+      });
+    });
+  });
+
 });
