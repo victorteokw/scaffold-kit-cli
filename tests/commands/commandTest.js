@@ -48,4 +48,18 @@ describe('command command: ', () => {
     });
   });
 
+  describe('update app file when destroying a new command', () => {
+    beforeAll(runTest({
+      group: 'command',
+      template: 'remove-command',
+      fixture: 'remove-command',
+      command: 'destroy command new-command'
+    }));
+    iterateFiles('command', 'remove-command', ({ filename, expected, generated }) => {
+      it(`creates file '${filename}'`, () => {
+        expect(generated(filename)).toBe(expected(filename));
+      });
+    });
+  });
+
 });
