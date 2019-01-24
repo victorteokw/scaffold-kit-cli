@@ -76,4 +76,18 @@ describe('command command: ', () => {
     });
   });
 
+  describe('update app file when create the first command', () => {
+    beforeAll(runTest({
+      group: 'command',
+      template: 'create-first-command',
+      fixture: 'create-first-command',
+      command: 'command first-command'
+    }));
+    iterateFiles('command', 'create-first-command', ({ filename, expected, generated }) => {
+      it(`creates file '${filename}'`, () => {
+        expect(generated(filename)).toBe(expected(filename));
+      });
+    });
+  });
+
 });
