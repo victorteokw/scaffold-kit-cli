@@ -1,6 +1,12 @@
 Scaffold Kit CLI
 ================
 
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Test Coverage][cov-image]][cov-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+[![License][license-image]][license-url]
+
 Scaffold Kit CLI is a scaffolding tool based on Scaffold Kit which generates
 Scaffold Kit scaffolding tool. 😝
 
@@ -33,3 +39,14 @@ scaffold-kit command command_name --copy-templates path/to/the-templates
 ## Documentation
 
 For documentations, please see official documentation.
+
+[npm-image]: https://badge.fury.io/js/scaffold-kit-cli.svg
+[npm-url]: https://npmjs.org/package/scaffold-kit-cli
+[travis-image]: https://travis-ci.org/zhangkaiyulw/scaffold-kit-cli.svg?branch=master
+[travis-url]: https://travis-ci.org/zhangkaiyulw/scaffold-kit-cli
+[cov-image]: https://codecov.io/gh/zhangkaiyulw/scaffold-kit-cli/branch/master/graph/badge.svg
+[cov-url]: https://codecov.io/gh/zhangkaiyulw/scaffold-kit-cli
+[daviddm-image]: https://david-dm.org/zhangkaiyulw/scaffold-kit-cli.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/zhangkaiyulw/scaffold-kit-cli
+[license-image]: https://img.shields.io/github/license/zhangkaiyulw/scaffold-kit-cli.svg
+[license-url]: https://github.com/zhangkaiyulw/scaffold-kit-cli/blob/master/LICENSE
