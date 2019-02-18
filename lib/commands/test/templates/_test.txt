@@ -1,3 +1,0 @@
-This is a sample template file.
-
-Replace files in this directory with your templates.
