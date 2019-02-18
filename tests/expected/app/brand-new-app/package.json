@@ -24,8 +24,6 @@
   "devDependencies": {
     "eslint": "latest",
     "eslint-config-man": "latest",
-    "eslint-plugin-jest": "latest",
-    "jest": "latest",
-    "scaffold-kit-quality-testing": "latest"
+    "eslint-plugin-jest": "latest"
   }
 }
