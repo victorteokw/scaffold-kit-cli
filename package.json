@@ -41,7 +41,7 @@
     "eslint-config-man": "^1.0.4",
     "eslint-plugin-jest": "^21.17.0",
     "jest": "^23.3.0",
-    "scaffold-kit-quality-testing": "0.1.7"
+    "scaffold-kit-quality-testing": "file:../scaffold-kit-quality-testing"
   },
   "engines": {
     "node": ">= 8.0.0"
