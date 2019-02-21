@@ -18,7 +18,7 @@ describe('app command: ', () => {
     afterAll(tearDownTest(handle));
     iterateExpectedFiles(handle, ({ message, expected, generated }) => {
       it(message, () => {
-        expect(generated).toBe(expected);
+        expect(generated()).toBe(expected);
       });
     });
   });
