@@ -7,7 +7,7 @@ const {
 } = require('scaffold-kit-quality-testing');
 const app = require('../../lib/app');
 
-describe.skip('app command: ', () => {
+describe('app command: ', () => {
   describe('creates an app in given directory', () => {
     const handle = setupTestCase({
       app,

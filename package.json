@@ -34,14 +34,14 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "0.1.8"
+    "scaffold-kit": "0.1.9"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
     "eslint-config-man": "^1.0.4",
     "eslint-plugin-jest": "^21.17.0",
     "jest": "^23.3.0",
-    "scaffold-kit-quality-testing": "file:../scaffold-kit-quality-testing"
+    "scaffold-kit-quality-testing": "0.1.8"
   },
   "engines": {
     "node": ">= 8.0.0"
