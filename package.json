@@ -1,6 +1,6 @@
 {
   "name": "scaffold-kit-cli",
-  "version": "0.1.13",
+  "version": "1.0.0",
   "description": "Create scaffold kit scaffold tools.",
   "homepage": "https://github.com/zhangkaiyulw/scaffold-kit-cli",
   "author": {
@@ -34,14 +34,14 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "0.1.13"
+    "scaffold-kit": "1.0.0"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
     "eslint-config-man": "^1.0.4",
     "eslint-plugin-jest": "^21.17.0",
     "jest": "^23.3.0",
-    "scaffold-kit-quality-testing": "0.1.13"
+    "scaffold-kit-quality-testing": "1.0.0"
   },
   "engines": {
     "node": ">= 8.0.0"
