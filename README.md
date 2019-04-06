@@ -38,7 +38,7 @@ scaffold-kit command command_name --copy-templates path/to/the-templates
 
 ## Documentation
 
-For documentations, please see official documentation.
+For documentations, please navigate to [Scaffold Kit website](http://scaffold-kit.com/).
 
 [npm-image]: https://badge.fury.io/js/scaffold-kit-cli.svg
 [npm-url]: https://npmjs.org/package/scaffold-kit-cli
