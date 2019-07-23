@@ -1,6 +1,6 @@
 {
   "name": "scaffold-kit-cli",
-  "version": "1.0.4",
+  "version": "2.0.0-alpha.0",
   "description": "Create scaffold kit scaffold tools.",
   "homepage": "https://github.com/zhangkaiyulw/scaffold-kit-cli",
   "author": {
@@ -19,10 +19,16 @@
     "scaffold"
   ],
   "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
     "test": "jest",
     "test-cov": "jest --coverage",
-    "lint": "eslint ./lib",
-    "lint-fix": "eslint ./lib --fix"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "camelcase": "^5.3.1",
@@ -34,14 +40,17 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "^1.0.4"
+    "scaffold-kit": "file:../scaffold-kit"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-man": "^1.0.4",
-    "eslint-plugin-jest": "^22.4.1",
-    "jest": "^24.7.1",
-    "scaffold-kit-quality-testing": "^1.0.4"
+    "@types/node": "^12.6.8",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "scaffold-kit-quality-testing": "^1.0.4",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
   },
   "engines": {
     "node": ">= 8.0.0"
