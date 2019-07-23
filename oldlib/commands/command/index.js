@@ -23,21 +23,6 @@ module.exports = createCommand({
   executeInProjectRootDirectory: true,
   options: [
     {
-      name: 'copyTemplates',
-      type: String,
-      description: 'the path where to copy templates from.',
-      defaultValue: '',
-      saveToPreference: false
-    },
-    {
-      name: 'ignoreFiles',
-      type: String,
-      description: 'files to be ignored.',
-      multiple: true,
-      defaultValue: [],
-      saveToPreference: false
-    },
-    {
       name: 'ignoreDirs',
       type: String,
       description: 'directories to be ignored.',

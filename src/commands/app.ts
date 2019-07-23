@@ -29,7 +29,7 @@ const app: Executable = async (ctx, next) => {
   renderContext.mainFileName = camelCase(renderContext.name as string);
 
   // Copying templates
-  const templatesDir = path.join(__dirname, 'templates');
+  const templatesDir = path.join(__dirname, '../../templates/app');
   ctx.useTemplateFrom(templatesDir, async () => {
     const dontCreate = {
       '.npmrc': !ctx.options.lockFile
@@ -46,39 +46,39 @@ const app: Executable = async (ctx, next) => {
         });
       }
     });
-
-    // Installing dependencies
-    ctx.installDependency({
-      package: 'scaffold-kit',
-      version: 'latest'
-    });
-
-    ctx.installDependency({
-      package: 'eslint',
-      version: 'latest',
-      dev: true
-    });
-
-    ctx.installDependency({
-      package: `eslint-config-${ctx.options.eslintConfig}`,
-      version: 'latest',
-      dev: true
-    });
-
-    ctx.installDependency({
-      package: 'eslint-plugin-jest',
-      version: 'latest',
-      dev: true
-    });
-
-    // Run user commands
-    if (ctx.options.gitInit) {
-      ctx.runShellCommand({
-        command: 'git init',
-        reverseCommand: 'rm -rf .git'
-      });
-    }
   });
+
+  // Installing dependencies
+  ctx.installDependency({
+    package: 'scaffold-kit',
+    version: 'latest'
+  });
+
+  ctx.installDependency({
+    package: 'eslint',
+    version: 'latest',
+    dev: true
+  });
+
+  ctx.installDependency({
+    package: `eslint-config-${ctx.options.eslintConfig}`,
+    version: 'latest',
+    dev: true
+  });
+
+  ctx.installDependency({
+    package: 'eslint-plugin-jest',
+    version: 'latest',
+    dev: true
+  });
+
+  // Run user commands
+  if (ctx.options.gitInit) {
+    ctx.runShellCommand({
+      command: 'git init',
+      reverseCommand: 'rm -rf .git'
+    });
+  }
 
   console.log('\nPlease edit package.json file manually.\n');
 };
