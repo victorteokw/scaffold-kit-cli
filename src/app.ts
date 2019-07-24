@@ -12,12 +12,7 @@ import {
 } from "scaffold-kit/lib/middlewares";
 
 import * as pkgJson from '../package.json';
-import {
-  app,
-  command,
-  destroy,
-  test
-} from "./commands";
+import { app, command } from "./commands";
 
 export default applyMiddleware(
   useConfigFile('.scaffold'),
@@ -48,10 +43,5 @@ export default applyMiddleware(
   acceptMockInstall,
   acceptOverwrite,
   acceptSilent,
-  forwardCommand({
-    app,
-    command,
-    destroy,
-    test
-  })
+  forwardCommand({ app, command })
 );
