@@ -13,25 +13,50 @@ import humanize from 'humanize-string';
 import camelCase from 'camelcase';
 import todoMessage from '../utils/todoMessage';
 import getGitConfig from '../utils/getGitConfig';
+import tsImport from '../utils/tsImport';
+
+interface RenderContext {
+  [key: string]: string | boolean | number
+}
 
 const app: Executable = async (ctx, next) => {
-  const renderContext = Object.assign({}, ctx.options);
-  // Get app name from the current working directory
-  if (!renderContext.name) renderContext.name = path.basename(ctx.wd);
-  renderContext.name = kebabCase(renderContext.name as string);
-  // Setup other options
-  renderContext.description = todoMessage('description');
-  renderContext.homepage = todoMessage('homepage');
-  renderContext.repository = todoMessage('repository');
-  if (!renderContext.license) renderContext.license = todoMessage('license');
-  renderContext.authorName = await getGitConfig('user.name') || todoMessage('author name');
-  renderContext.authorEmail = await getGitConfig('user.email') || todoMessage('author email');
-  renderContext.productName = humanize(renderContext.name as string);
-  renderContext.rcFileName = lowerCase(camelCase(renderContext.name as string));
-  renderContext.mainFileName = camelCase(renderContext.name as string);
+
+  // Configure render context
+  const renderContext = Object.assign({}, ctx.options) as RenderContext;
+  if (!renderContext.commandName) {
+    renderContext.commandName = kebabCase(path.basename(ctx.wd));
+  }
+  if (!renderContext.displayName) {
+    renderContext.displayName = path.basename(ctx.wd) as string;
+  }
+  if (!renderContext.authorName) {
+    renderContext.authorName = await getGitConfig('user.name') || todoMessage('author name');
+  }
+  if (!renderContext.authorEmail) {
+    renderContext.authorEmail = await getGitConfig('user.email') || todoMessage('author email');
+  }
+  if (!renderContext.rcFileName) {
+    renderContext.rcFileName = lowerCase(camelCase(renderContext.commandName as string));
+  }
+  if (!renderContext.mainFileName) {
+    renderContext.mainFileName = camelCase(renderContext.commandName as string);
+  }
+  renderContext.mainAppFileMiddlewareImport = tsImport({
+    acceptMockInstall: true,
+    acceptOverwrite: true,
+    acceptSilent: true,
+    defineOptions: true,
+    displayAppHelp: true,
+    displayVersion: true,
+    forwardCommand: true,
+    parseArgv: true,
+    useConfigFile: true,
+    prefixGenerate: renderContext.prefixGenerate,
+    prefixDestroy: renderContext.useDestroy
+  }, 'scaffold-kit/lib/middlewares');
 
   // Copying templates
-  const templatesDir = path.join(__dirname, '../../templates/app');
+  const templatesDir = path.join(__dirname, `../../templates/app/${ctx.options.typeScript ? 'ts' : 'js'}`);
   ctx.useTemplateFrom(templatesDir, async () => {
     const dontCreate = {
       '.npmrc': !ctx.options.lockFile
@@ -87,9 +112,14 @@ const app: Executable = async (ctx, next) => {
 
 export default applyMiddleware(
   defineOptions({
-    name: {
+    commandName: {
       type: 'string',
-      desc: "the scaffold tool's name.",
+      desc: "the scaffold tool's command name.",
+      save: false
+    },
+    displayName: {
+      type: 'string',
+      desc: "the scaffold tool's product display name.",
       save: false
     },
     ver: {
@@ -112,7 +142,7 @@ export default applyMiddleware(
     },
     eslintConfig: {
       type: 'string',
-      desc: 'the eslint configuration to use.',
+      desc: 'the eslint configuration to use. Only used in JS mode.',
       default: 'man',
       save: false
     },
@@ -126,6 +156,30 @@ export default applyMiddleware(
       type: 'boolean',
       desc: 'run `git init` after generating the project.',
       default: false,
+      save: false
+    },
+    typeScript: {
+      type: 'boolean',
+      desc: 'whether initiate TypeScript project.',
+      default: false,
+      save: false
+    },
+    prefixGenerate: {
+      type: 'boolean',
+      desc: 'whether allow commands to be prefixed with generate.',
+      default: true,
+      save: false
+    },
+    useDestroy: {
+      type: 'boolean',
+      desc: 'automatically add destroy command to the scaffold tool.',
+      default: true,
+      save: false
+    },
+    rcFileName: {
+      type: 'string',
+      desc: "the .rc file's name.",
+      default: undefined,
       save: false
     }
   }),

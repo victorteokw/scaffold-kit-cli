@@ -1,33 +1,23 @@
 import { applyMiddleware } from "scaffold-kit";
-import {
-  acceptMockInstall,
-  acceptOverwrite,
-  acceptSilent,
-  defineOptions,
-  displayAppHelp,
-  displayVersion,
-  forwardCommand,
-  parseArgv,
-  useConfigFile
-} from "scaffold-kit/lib/middlewares";
+<%- mainAppFileMiddlewareImport %>
 
 import * as pkgJson from '../package.json';
-import { app, command } from "./commands";
+import hello from "./commands/hello";
 
 const application = applyMiddleware(
-  useConfigFile('.scaffold'),
+  useConfigFile('.<%- rcFileName %>'),
   defineOptions({
     help: {
       type: 'boolean',
       alias: 'h',
-      desc: "View Scaffold Kit CLI's help.",
+      desc: "View <%= displayName %>'s help.",
       default: false,
       save: false
     },
     version: {
       type: 'boolean',
       alias: 'v',
-      desc: "View Scaffold Kit CLI's version.",
+      desc: "View <%= ver %>'s version.",
       default: false,
       save: false
     }
@@ -35,15 +25,21 @@ const application = applyMiddleware(
   parseArgv,
   displayVersion(pkgJson.version),
   displayAppHelp({
-    displayName: 'Scaffold Kit CLI',
-    commandName: 'scaffold-kit',
+    displayName: '<%= displayName %>',
+    commandName: '<%= commandName %>',
     version: pkgJson.version,
     description: pkgJson.description
   }),
   acceptMockInstall,
   acceptOverwrite,
   acceptSilent,
-  forwardCommand({ app, command })
+<% if (prefixGenerate) { -%>
+  prefixGenerate,
+<% } -%>
+<% if (useDestroy) { -%>
+  prefixDestroy,
+<% } -%>
+  forwardCommand({ hello })
 );
 
 export default application;

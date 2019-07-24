@@ -1,0 +1,31 @@
+{
+  "name": "<%- commandName %>",
+<% if (private) { -%>
+  "private": true,
+<% } -%>
+  "version": "<%- ver %>",
+  "description": "<%- TODO: update description. %>",
+  "homepage": "<%- TODO: update homepage. %>",
+  "author": {
+    "name": "<%- authorName %>",
+    "email": "<%- authorEmail %>"
+  },
+  "repository": "<%- TODO: update repository. %>",
+<% if (!private) { -%>
+  "license": "<%- license %>",
+<% } -%>
+  "bin": {
+    "<%- commandName %>": "lib/<%- mainFileName %>.js"
+  },
+  "files": [
+    "lib",
+    "templates"
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

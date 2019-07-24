@@ -7,5 +7,10 @@
     "max-classes-per-file": false,
     "ordered-imports": false,
     "no-console": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "templates/**/*.ts"
+    ]
   }
 }
