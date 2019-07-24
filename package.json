@@ -10,10 +10,13 @@
   "repository": "zhangkaiyulw/scaffold-kit-cli",
   "license": "MIT",
   "bin": {
-    "scaffold-kit": "lib/scaffoldKit.js"
+    "scaffold-kit": "lib/src/scaffoldKit.js"
   },
+  "main": "lib/app.js",
+  "types": "lib/app.d.ts",
   "files": [
-    "lib"
+    "lib/**/*",
+    "templates/**/*"
   ],
   "keywords": [
     "scaffold"
@@ -43,6 +46,8 @@
     "scaffold-kit": "file:../scaffold-kit"
   },
   "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.8",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",

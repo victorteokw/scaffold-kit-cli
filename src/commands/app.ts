@@ -2,13 +2,15 @@ import { applyMiddleware, Executable } from "scaffold-kit/lib/index";
 import {
   defineOptions,
   redirectWorkingDirectory,
-  displayHelp
+  displayCommandHelp
 } from "scaffold-kit/lib/middlewares";
+import {
+  iterateTemplateFiles
+} from "scaffold-kit/lib/utilities";
 import * as path from 'path';
-import kebabCase from 'lodash.kebabcase';
+import { kebabCase, lowerCase } from 'lodash';
 import humanize from 'humanize-string';
 import camelCase from 'camelcase';
-import * as lowerCase from 'lower-case';
 import todoMessage from '../utils/todoMessage';
 import getGitConfig from '../utils/getGitConfig';
 
@@ -16,7 +18,7 @@ const app: Executable = async (ctx, next) => {
   const renderContext = Object.assign({}, ctx.options);
   // Get app name from the current working directory
   if (!renderContext.name) renderContext.name = path.basename(ctx.wd);
-  renderContext.name = kebabCase(renderContext.name);
+  renderContext.name = kebabCase(renderContext.name as string);
   // Setup other options
   renderContext.description = todoMessage('description');
   renderContext.homepage = todoMessage('homepage');
@@ -37,7 +39,7 @@ const app: Executable = async (ctx, next) => {
     const nameMap = {
       'lib/startup.js': `lib/${renderContext.mainFileName}.js`
     };
-    iterateTemplateFilesFromDirectory(templatesDir, ({ templateName, filename }) => {
+    iterateTemplateFiles(templatesDir, ({ templateName, filename }) => {
       if (!dontCreate[filename]) {
         ctx.createFile({
           from: templateName,
@@ -128,9 +130,12 @@ export default applyMiddleware(
     }
   }),
   redirectWorkingDirectory,
-  displayHelp({
-    desc: 'Create a new scaffold tool.',
-    usage: 'scaffold-kit app path_to_dir [options...]'
+  displayCommandHelp({
+    displayName: 'Scaffold Kit CLI',
+    commandName: 'scaffold-kit',
+    usage: 'scaffold-kit app path_to_dir [options...]',
+    description: 'Create a new scaffold tool.',
+    version: '1'
   }),
   app
 );

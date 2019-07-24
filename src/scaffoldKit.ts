@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { execute } from 'scaffold-kit/lib/index';
 import app from './app';
 
