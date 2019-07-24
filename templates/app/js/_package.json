@@ -17,6 +17,7 @@
   "bin": {
     "<%- commandName %>": "lib/<%- mainFileName %>.js"
   },
+  "main": "lib/app.js",
   "files": [
     "lib",
     "templates"
@@ -27,5 +28,8 @@
   "dependencies": {
   },
   "devDependencies": {
+  },
+  "engines": {
+    "node": ">= 8.0.0"
   }
 }

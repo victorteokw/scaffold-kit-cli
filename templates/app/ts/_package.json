@@ -17,15 +17,22 @@
   "bin": {
     "<%- commandName %>": "lib/<%- mainFileName %>.js"
   },
+  "main": "lib/app.js",
+  "types": "lib/app.d.ts",
   "files": [
     "lib",
     "templates"
   ],
   "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "jest"
   },
   "dependencies": {
   },
   "devDependencies": {
+  },
+  "engines": {
+    "node": ">= 8.0.0"
   }
 }

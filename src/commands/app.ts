@@ -9,11 +9,11 @@ import {
 } from "scaffold-kit/lib/utilities";
 import * as path from 'path';
 import { kebabCase, lowerCase } from 'lodash';
-import humanize from 'humanize-string';
 import camelCase from 'camelcase';
 import todoMessage from '../utils/todoMessage';
 import getGitConfig from '../utils/getGitConfig';
 import tsImport from '../utils/tsImport';
+import jsImport from '../utils/jsImport';
 
 interface RenderContext {
   [key: string]: string | boolean | number
@@ -41,7 +41,8 @@ const app: Executable = async (ctx, next) => {
   if (!renderContext.mainFileName) {
     renderContext.mainFileName = camelCase(renderContext.commandName as string);
   }
-  renderContext.mainAppFileMiddlewareImport = tsImport({
+  const importFunc = ctx.options.typeScript ? tsImport : jsImport;
+  renderContext.mainAppFileMiddlewareImport = importFunc({
     acceptMockInstall: true,
     acceptOverwrite: true,
     acceptSilent: true,
