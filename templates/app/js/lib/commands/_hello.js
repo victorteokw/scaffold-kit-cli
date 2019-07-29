@@ -1,7 +1,7 @@
 const hello = (ctx) => {
   ctx.createFile({
     at: 'hello.txt',
-    content: 'Hello, World!'
+    content: 'Hello, World!\n'
   });
 };
 
