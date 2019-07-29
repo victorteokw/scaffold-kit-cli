@@ -63,7 +63,8 @@ const app: Executable = async (ctx, next) => {
       '.npmrc': !ctx.options.lockFile
     };
     const nameMap = {
-      'lib/startup.js': `lib/${renderContext.mainFileName}.js`
+      'lib/startup.js': `lib/${renderContext.mainFileName}.js`,
+      'src/startup.ts': `src/${renderContext.mainFileName}.ts`
     };
     iterateTemplateFiles(templatesDir, ({ templateName, filename }) => {
       if (!dontCreate[filename]) {

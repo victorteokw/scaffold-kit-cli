@@ -43,15 +43,16 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "file:../scaffold-kit"
+    "scaffold-kit": "^2.0.0-alpha.0"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
+    "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.8",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
-    "scaffold-kit-quality-testing": "^1.0.4",
+    "scaffold-kit-quality-testing": "^2.0.0-alpha.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",

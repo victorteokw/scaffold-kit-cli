@@ -1,10 +1,13 @@
 module.exports = {
-  testRegex: '/tests/.*Test\\.js',
+  transform: {
+    '^.+\\.(t|j)sx?$': 'ts-jest'
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'node'],
+  testRegex: '/tests/.*Test\\.ts',
   testPathIgnorePatterns: [
     '/node_modules/',
     '/tests/expected',
-    '/tests/fixtures',
-    '/lib/commands/test/templates'
+    '/tests/fixtures'
   ],
   'testEnvironment': 'node'
 };
