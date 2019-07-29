@@ -1,3 +1,7 @@
 {
-  "extends": "<%- eslintConfig %>"
+  "extends": "<%- eslintConfig %>",
+  "plugins": ["jest"],
+  "env": {
+    "jest": true
+  }
 }

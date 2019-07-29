@@ -26,7 +26,8 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "test-cov": "jest --coverage"
   },
   "dependencies": {
   },
