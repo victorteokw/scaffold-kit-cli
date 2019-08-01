@@ -2,7 +2,8 @@ import { applyMiddleware, Executable } from "scaffold-kit/lib/index";
 import {
   defineOptions,
   displayCommandHelp,
-  seekingProjectRoot
+  seekingProjectRoot,
+  executeInstructions
 } from "scaffold-kit/lib/middlewares";
 import * as path from 'path';
 import camelCase from 'camelcase';
@@ -261,5 +262,6 @@ export default applyMiddleware(
     description: 'Create a command inside an existing scaffold tool.',
     version: '1'
   }),
-  command
+  command,
+  executeInstructions
   );

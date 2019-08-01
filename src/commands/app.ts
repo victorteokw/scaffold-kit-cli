@@ -2,7 +2,8 @@ import { applyMiddleware, Executable } from "scaffold-kit/lib/index";
 import {
   defineOptions,
   redirectWorkingDirectory,
-  displayCommandHelp
+  displayCommandHelp,
+  executeInstructions
 } from "scaffold-kit/lib/middlewares";
 import {
   iterateTemplateFiles
@@ -109,6 +110,8 @@ const app: Executable = async (ctx, next) => {
     });
   }
 
+  await next(ctx);
+
   console.log('\nPlease edit package.json file manually.\n');
 };
 
@@ -193,5 +196,6 @@ export default applyMiddleware(
     description: 'Create a new scaffold tool.',
     version: '1'
   }),
-  app
+  app,
+  executeInstructions
 );

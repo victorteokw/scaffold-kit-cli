@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const { execute } = require('scaffold-kit');
+const { Context } = require('scaffold-kit');
+const nullExecutable = require('scaffold-kit/lib/nullExecutable').default;
 const app = require('./app');
 
-execute(app, { wd: process.cwd(), args: [], options: {}});
+app(new Context({ wd: process.cwd(), args: [], options: {}}), nullExecutable);

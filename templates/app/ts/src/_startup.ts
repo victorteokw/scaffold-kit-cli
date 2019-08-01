@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { execute } from 'scaffold-kit';
+import { Context } from 'scaffold-kit';
+import nullExecutable from 'scaffold-kit/lib/nullExecutable';
 import app from './app';
 
-execute(app, { wd: process.cwd(), args: [], options: {}});
+app(new Context({ wd: process.cwd(), args: [], options: {}}), nullExecutable);
