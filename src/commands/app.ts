@@ -23,6 +23,7 @@ interface RenderContext {
 const app: Executable = async (ctx, next) => {
 
   // Configure render context
+
   const renderContext = Object.assign({}, ctx.options) as RenderContext;
   if (!renderContext.commandName) {
     renderContext.commandName = kebabCase(path.basename(ctx.wd));
@@ -58,6 +59,7 @@ const app: Executable = async (ctx, next) => {
   }, 'scaffold-kit/lib/middlewares');
 
   // Copying templates
+
   const templatesDir = path.join(__dirname, `../../templates/app/${ctx.options.typeScript ? 'ts' : 'js'}`);
   ctx.useTemplateFrom(templatesDir, async () => {
     const dontCreate = {
@@ -79,30 +81,88 @@ const app: Executable = async (ctx, next) => {
   });
 
   // Installing dependencies
+
   ctx.installDependency({
     package: 'scaffold-kit',
     version: 'latest'
   });
 
   ctx.installDependency({
-    package: 'eslint',
+    package: 'scaffold-kit-quality-testing',
     version: 'latest',
     dev: true
   });
 
   ctx.installDependency({
-    package: `eslint-config-${ctx.options.eslintConfig}`,
+    package: 'jest',
     version: 'latest',
     dev: true
   });
 
-  ctx.installDependency({
-    package: 'eslint-plugin-jest',
-    version: 'latest',
-    dev: true
-  });
+  if (ctx.options.typeScript) {
+    ctx.installDependency({
+      package: '@types/node',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: '@types/jest',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: 'typescript',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: 'ts-jest',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: 'tslint',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: 'prettier',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: 'tslint-config-prettier',
+      version: 'latest',
+      dev: true
+    });
+  } else {
+    ctx.installDependency({
+      package: 'eslint',
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: `eslint-config-${ctx.options.eslintConfig}`,
+      version: 'latest',
+      dev: true
+    });
+
+    ctx.installDependency({
+      package: 'eslint-plugin-jest',
+      version: 'latest',
+      dev: true
+    });
+  }
 
   // Run user commands
+
   if (ctx.options.gitInit) {
     ctx.runShellCommand({
       command: 'git init',
