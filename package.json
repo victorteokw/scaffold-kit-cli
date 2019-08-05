@@ -1,6 +1,6 @@
 {
   "name": "scaffold-kit-cli",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.4",
   "description": "Create scaffold kit scaffold tools.",
   "homepage": "https://github.com/zhangkaiyulw/scaffold-kit-cli",
   "author": {
@@ -46,7 +46,7 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.map": "^4.6.0",
     "lower-case": "^1.1.4",
-    "scaffold-kit": "file:../scaffold-kit"
+    "scaffold-kit": "^2.0.0-alpha.5"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
@@ -55,7 +55,7 @@
     "@types/node": "^12.6.8",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
-    "scaffold-kit-quality-testing": "^2.0.0-alpha.3",
+    "scaffold-kit-quality-testing": "^2.0.0-alpha.4",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",

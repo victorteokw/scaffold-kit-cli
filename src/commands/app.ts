@@ -2,8 +2,7 @@ import { applyMiddleware, Executable } from "scaffold-kit/lib/index";
 import {
   defineOptions,
   redirectWorkingDirectory,
-  displayCommandHelp,
-  executeInstructions,
+  commandHelp,
   parseArgv,
   removeFirstArg
 } from "scaffold-kit/lib/middlewares";
@@ -12,6 +11,7 @@ import {
 } from "scaffold-kit/lib/utilities";
 import * as path from 'path';
 import { kebabCase, lowerCase } from 'lodash';
+import humanize from 'humanize-string';
 import camelCase from 'camelcase';
 import todoMessage from '../utils/todoMessage';
 import getGitConfig from '../utils/getGitConfig';
@@ -24,6 +24,11 @@ interface RenderContext {
 
 const app: Executable = async (ctx, next) => {
 
+  if (ctx.helpMode) {
+    await next(ctx);
+    return;
+  }
+
   // Configure render context
 
   const renderContext = Object.assign({}, ctx.options) as RenderContext;
@@ -31,7 +36,7 @@ const app: Executable = async (ctx, next) => {
     renderContext.commandName = kebabCase(path.basename(ctx.wd));
   }
   if (!renderContext.displayName) {
-    renderContext.displayName = path.basename(ctx.wd) as string;
+    renderContext.displayName = humanize(path.basename(ctx.wd));
   }
   if (!renderContext.authorName) {
     renderContext.authorName = await getGitConfig('user.name') || todoMessage('author name');
@@ -179,6 +184,12 @@ const app: Executable = async (ctx, next) => {
 };
 
 export default applyMiddleware(
+  commandHelp({
+    appCommandName: 'scaffold-kit',
+    commandName: 'app',
+    usage: 'scaffold-kit app path_to_dir [options...]',
+    description: 'Create a new scaffold tool.'
+  }),
   defineOptions({
     commandName: {
       type: 'string',
@@ -254,13 +265,5 @@ export default applyMiddleware(
   parseArgv,
   removeFirstArg,
   redirectWorkingDirectory,
-  displayCommandHelp({
-    displayName: 'Scaffold Kit CLI',
-    commandName: 'scaffold-kit',
-    usage: 'scaffold-kit app path_to_dir [options...]',
-    description: 'Create a new scaffold tool.',
-    version: '1'
-  }),
-  app,
-  executeInstructions
+  app
 );

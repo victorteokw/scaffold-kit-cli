@@ -1,11 +1,10 @@
 import { applyMiddleware, Executable } from "scaffold-kit/lib/index";
 import {
   defineOptions,
-  displayCommandHelp,
   seekingProjectRoot,
-  executeInstructions,
   parseArgv,
-  removeFirstArg
+  removeFirstArg,
+  commandHelp
 } from "scaffold-kit/lib/middlewares";
 import * as path from 'path';
 import camelCase from 'camelcase';
@@ -16,6 +15,12 @@ import * as glob from 'glob';
 // const escodegen = require('escodegen');
 
 const command: Executable = async (ctx, next) => {
+
+  if (ctx.helpMode) {
+    await next(ctx);
+    return;
+  }
+
   // // Setup templates directory
   // const defaultTemplates = path.join(__dirname, '../../templates/command');
   // let useDefaultTemplate: boolean;
@@ -237,6 +242,12 @@ const command: Executable = async (ctx, next) => {
 };
 
 export default applyMiddleware(
+  commandHelp({
+    appCommandName: 'scaffold-kit',
+    commandName: 'command',
+    usage: 'scaffold-kit command command_name [options...]',
+    description: 'Create a command inside an existing scaffold tool.'
+  }),
   defineOptions({
     copyTemplates: {
       type: 'string',
@@ -257,15 +268,7 @@ export default applyMiddleware(
     }
   }),
   seekingProjectRoot('package.json'),
-  displayCommandHelp({
-    displayName: 'Scaffold Kit CLI',
-    commandName: 'scaffold-kit',
-    usage: 'scaffold-kit command command_name [options...]',
-    description: 'Create a command inside an existing scaffold tool.',
-    version: '1'
-  }),
   parseArgv,
   removeFirstArg,
-  command,
-  executeInstructions
+  command
   );

@@ -1,49 +1,44 @@
-import { applyMiddleware } from "scaffold-kit";
+import { applyMiddleware, chainMiddleware } from "scaffold-kit";
 import {
+  acceptHelp,
+  acceptVersion,
   acceptMockInstall,
   acceptOverwrite,
   acceptSilent,
-  defineOptions,
-  displayAppHelp,
+  appHelp,
+  catchError,
+  displayHelp,
   displayVersion,
   forwardCommand,
   parseArgv,
-  useConfigFile
+  useConfigFile,
+  executeInstructions
 } from "scaffold-kit/lib/middlewares";
 
 import * as pkgJson from '../package.json';
 import { app, command } from "./commands";
 
 const application = applyMiddleware(
-  useConfigFile('.scaffold'),
-  defineOptions({
-    help: {
-      type: 'boolean',
-      alias: 'h',
-      desc: "View Scaffold Kit CLI's help.",
-      default: false,
-      save: false
-    },
-    version: {
-      type: 'boolean',
-      alias: 'v',
-      desc: "View Scaffold Kit CLI's version.",
-      default: false,
-      save: false
-    }
-  }),
-  parseArgv,
-  displayVersion(pkgJson.version),
-  displayAppHelp({
+  appHelp({
     displayName: 'Scaffold Kit CLI',
     commandName: 'scaffold-kit',
     version: pkgJson.version,
     description: pkgJson.description
   }),
-  acceptMockInstall,
-  acceptOverwrite,
-  acceptSilent,
-  forwardCommand({ app, command })
+  useConfigFile('.scaffold'),
+  chainMiddleware(
+    acceptHelp,
+    acceptVersion,
+    acceptMockInstall,
+    acceptOverwrite,
+    acceptSilent,
+    parseArgv
+  ),
+  displayVersion(pkgJson.version),
+  catchError('CommandNameError', displayHelp()),
+  forwardCommand({ app, command }),
+  displayHelp(),
+  executeInstructions
 );
 
 export default application;
