@@ -3,7 +3,9 @@ import {
   defineOptions,
   redirectWorkingDirectory,
   displayCommandHelp,
-  executeInstructions
+  executeInstructions,
+  parseArgv,
+  removeFirstArg
 } from "scaffold-kit/lib/middlewares";
 import {
   iterateTemplateFiles
@@ -60,7 +62,7 @@ const app: Executable = async (ctx, next) => {
 
   // Copying templates
 
-  const templatesDir = path.join(__dirname, `../../templates/app/${ctx.options.typeScript ? 'ts' : 'js'}`);
+  const templatesDir = path.join(__dirname, `../../../templates/app/${ctx.options.typeScript ? 'ts' : 'js'}`);
   ctx.useTemplateFrom(templatesDir, async () => {
     const dontCreate = {
       '.npmrc': !ctx.options.lockFile
@@ -69,6 +71,7 @@ const app: Executable = async (ctx, next) => {
       'lib/startup.js': `lib/${renderContext.mainFileName}.js`,
       'src/startup.ts': `src/${renderContext.mainFileName}.ts`
     };
+
     iterateTemplateFiles(templatesDir, ({ templateName, filename }) => {
       if (!dontCreate[filename]) {
         ctx.createFile({
@@ -248,6 +251,8 @@ export default applyMiddleware(
       save: false
     }
   }),
+  parseArgv,
+  removeFirstArg,
   redirectWorkingDirectory,
   displayCommandHelp({
     displayName: 'Scaffold Kit CLI',
