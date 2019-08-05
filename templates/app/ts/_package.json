@@ -4,13 +4,13 @@
   "private": true,
 <% } -%>
   "version": "<%- ver %>",
-  "description": "<%- TODO: update description. %>",
-  "homepage": "<%- TODO: update homepage. %>",
+  "description": "TODO: update description.",
+  "homepage": "TODO: update homepage.",
   "author": {
     "name": "<%- authorName %>",
     "email": "<%- authorEmail %>"
   },
-  "repository": "<%- TODO: update repository. %>",
+  "repository": "TODO: update repository.",
 <% if (!private) { -%>
   "license": "<%- license %>",
 <% } -%>
